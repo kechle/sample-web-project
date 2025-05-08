@@ -273,6 +273,13 @@ body {
     padding: 24px;
     transition: all 0.3s;
     border: 1px solid var(--input-border);
+    max-width: 100%;
+    min-height: 180px;
+    max-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden;
 }
 
 .sample-card:hover {
@@ -290,6 +297,10 @@ body {
     color: var(--text-secondary);
     margin-bottom: 16px;
     font-size: 0.95em;
+    max-height: 80px;
+    overflow-y: auto;
+    word-break: break-word;
+    padding-right: 4px;
 }
 
 .sample-card .actions {

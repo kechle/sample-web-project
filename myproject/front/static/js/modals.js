@@ -47,7 +47,7 @@ export function setupModalHandlers() {
     window.onclick = (e) => {
         const modal = document.getElementById('my-sample-modal');
         if (e.target === modal) modal.style.display = 'none';
-        ['upload-modal','login-modal','register-modal'].forEach(id => {
+        ['upload-modal','login-modal','register-modal','upload-result-modal'].forEach(id => {
             if (e.target === document.getElementById(id)) hideModal(id);
         });
     };
@@ -59,4 +59,13 @@ export function setupModalHandlers() {
             document.getElementById('my-sample-modal').style.display = 'none';
         };
     }
-} 
+    // Закрытие по крестику для upload-result-modal
+    const uploadResultClose = document.querySelector('#upload-result-modal .close');
+    if (uploadResultClose) {
+        uploadResultClose.onclick = function() {
+            document.getElementById('upload-result-modal').style.display = 'none';
+        };
+    }
+}
+
+window.closeModal = closeModal; 

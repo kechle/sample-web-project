@@ -25,7 +25,8 @@ class SampleList(APIView):
             samples = samples.filter(category__id=category)
         if tags:
             tag_list = tags.split(',')
-            samples = samples.filter(tags__id__in=tag_list).distinct()
+            for tag_id in tag_list:
+                samples = samples.filter(tags__id=tag_id)
         if bpm:
             samples = samples.filter(bpm=bpm)
         if search:
