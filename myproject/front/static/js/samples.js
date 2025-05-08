@@ -3,6 +3,8 @@ import { showUploadResult, closeModal } from './modals.js';
 
 // --- Работа с сэмплами ---
 let likedSampleIds = [];
+const SAMPLES_PER_PAGE_MAIN = 25;
+let mainSamplesPage = 1;
 
 export async function fetchLikedSamples() {
     if (!localStorage.getItem('token')) return [];
@@ -31,13 +33,18 @@ export async function fetchUploadedSamples() {
 export function renderSampleCard(sample, showLike = true) {
     let tagsHtml = '';
     if (sample.tags && sample.tags.length) {
+        const shownTags = sample.tags.slice(0, 4);
         tagsHtml = `<div class="tags">` +
-            sample.tags.map(tag => `<span class="tag">${tag.name}</span>`).join(' ') +
+            shownTags.map(tag => `<span class="tag">${tag.name}</span>`).join(' ') +
             `</div>`;
     }
     let categoryHtml = '';
     if (sample.category && sample.category.name) {
         categoryHtml = `<div class="category"><b>Category:</b> ${sample.category.name}</div>`;
+    }
+    let bpmHtml = '';
+    if (sample.bpm) {
+        bpmHtml = `<span class="bpm">BPM: ${sample.bpm}</span>`;
     }
     let likeBtn = '';
     if (showLike && localStorage.getItem('token')) {
@@ -66,6 +73,7 @@ export function renderSampleCard(sample, showLike = true) {
                 ${likeBtn}
                 <h3 style="margin:0;">${sample.name}</h3>
             </div>
+            ${bpmHtml}
             <p>${sample.description}</p>
             ${categoryHtml}
             ${tagsHtml}
@@ -83,7 +91,9 @@ export async function uploadSample() {
     formData.append('description', document.getElementById('sample-description').value);
     formData.append('file', document.getElementById('sample-file').files[0]);
     formData.append('category_id', document.getElementById('sample-category').value);
-    formData.append('bpm', document.getElementById('sample-bpm').value);
+    let bpmValue = document.getElementById('sample-bpm').value;
+    if (bpmValue > 999) bpmValue = 999;
+    formData.append('bpm', bpmValue);
     
     const selectedTagElements = document.querySelectorAll('#sample-tags .tag-option.selected');
     selectedTagElements.forEach(tagElement => {
@@ -110,19 +120,22 @@ export async function uploadSample() {
     }
 }
 
-export async function loadSamples() {
+export async function loadSamples(page = 1) {
     const categoryEl = document.getElementById('category');
     const searchEl = document.getElementById('search-input');
+    const bpmEl = document.getElementById('bpm-filter');
     const container = document.getElementById('samples-container');
     if (!container) return;
     
     const category = categoryEl ? categoryEl.value : '';
     const tags = selectedFilterTags.join(',');
     const search = searchEl ? searchEl.value : '';
+    const bpm = bpmEl ? bpmEl.value : '';
     let url = '/api/samples/?';
     if (category) url += `category=${category}&`;
     if (tags) url += `tags=${tags}&`;
-    if (search) url += `search=${encodeURIComponent(search)}`;
+    if (search) url += `search=${encodeURIComponent(search)}&`;
+    if (bpm !== '' && bpm !== undefined) url += `bpm=${bpm}`;
     
     await fetchLikedSamples();
     const response = await fetch(url, {
@@ -130,10 +143,30 @@ export async function loadSamples() {
     });
     const data = await response.json();
     
+    mainSamplesPage = page;
+    const totalPages = Math.ceil(data.length / SAMPLES_PER_PAGE_MAIN) || 1;
+    const currentPage = mainSamplesPage;
+    const start = (currentPage - 1) * SAMPLES_PER_PAGE_MAIN;
+    const end = start + SAMPLES_PER_PAGE_MAIN;
+    const pageSamples = data.slice(start, end);
     container.innerHTML = '';
-    data.forEach(sample => {
+    pageSamples.forEach(sample => {
         container.innerHTML += renderSampleCard(sample, true);
     });
+    
+    // Пагинация
+    if (totalPages > 1) {
+        const pagDiv = document.createElement('div');
+        pagDiv.className = 'pagination';
+        pagDiv.innerHTML = `
+            <button class="pag-btn" ${currentPage === 1 ? 'disabled' : ''} id="main-prev-page">&larr; Prev</button>
+            <span class="pag-info">Page ${currentPage} of ${totalPages}</span>
+            <button class="pag-btn" ${currentPage === totalPages ? 'disabled' : ''} id="main-next-page">Next &rarr;</button>
+        `;
+        container.appendChild(pagDiv);
+        document.getElementById('main-prev-page').onclick = () => loadSamples(currentPage - 1);
+        document.getElementById('main-next-page').onclick = () => loadSamples(currentPage + 1);
+    }
     
     setupLikeButtons(container);
 }

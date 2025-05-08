@@ -62,9 +62,30 @@ export function loadUploadTags() {
                 div.className = 'tag-option';
                 div.textContent = tag.name;
                 div.dataset.tag = tag.id;
-                div.onclick = () => div.classList.toggle('selected');
+                div.onclick = () => {
+                    const selected = tagsContainer.querySelectorAll('.tag-option.selected').length;
+                    if (div.classList.contains('selected')) {
+                        div.classList.remove('selected');
+                    } else if (selected < 4) {
+                        div.classList.add('selected');
+                    }
+                    // После выбора/снятия выделения обновляем доступность остальных
+                    updateTagAvailability();
+                };
                 tagsContainer.appendChild(div);
             });
+            function updateTagAvailability() {
+                const selected = tagsContainer.querySelectorAll('.tag-option.selected').length;
+                tagsContainer.querySelectorAll('.tag-option').forEach(el => {
+                    if (!el.classList.contains('selected')) {
+                        el.style.pointerEvents = selected >= 4 ? 'none' : 'auto';
+                        el.style.opacity = selected >= 4 ? '0.5' : '1';
+                    } else {
+                        el.style.pointerEvents = 'auto';
+                        el.style.opacity = '1';
+                    }
+                });
+            }
         });
 }
 
@@ -92,5 +113,10 @@ export function setupFilters() {
     const searchBtn = document.getElementById('search-btn');
     if (searchBtn) {
         searchBtn.onclick = () => window.loadSamples();
+    }
+
+    const bpmInput = document.getElementById('bpm-filter');
+    if (bpmInput) {
+        bpmInput.addEventListener('input', window.loadSamples);
     }
 } 

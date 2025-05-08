@@ -200,12 +200,28 @@ body {
     background: #f7f7fa;
     border: 1px solid var(--input-border);
     border-radius: 12px;
-    padding: 12px 20px;
+    padding: 12px 20px 36px 20px;
     margin: 32px auto 24px auto;
     flex-wrap: wrap;
     max-width: 720px;
     width: 100%;
     box-sizing: border-box;
+    position: relative;
+}
+
+.bpm-filter-wrapper {
+    position: absolute;
+    left: 20px;
+    bottom: 12px;
+    width: 120px;
+}
+#bpm-filter {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--input-border);
+    background: var(--input-bg);
+    font-size: 1em;
 }
 
 .filters select {
@@ -280,6 +296,7 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     overflow: hidden;
+    position: relative;
 }
 
 .sample-card:hover {
@@ -291,6 +308,21 @@ body {
     margin: 0 0 12px 0;
     font-size: 1.2em;
     font-weight: 600;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: break-all;
+}
+
+.sample-card .bpm {
+    color: #86868b;
+    font-size: 0.95em;
+    position: absolute;
+    right: 24px;
+    bottom: 18px;
+    margin-bottom: 0;
+    display: block;
 }
 
 .sample-card p {
