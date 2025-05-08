@@ -1,4 +1,5 @@
 import { selectedFilterTags } from './filters.js';
+import { showUploadResult, closeModal } from './modals.js';
 
 // --- Работа с сэмплами ---
 let likedSampleIds = [];
