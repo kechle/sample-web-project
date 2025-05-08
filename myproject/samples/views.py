@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
 from django.shortcuts import render
+from rest_framework.pagination import PageNumberPagination
 
 class SampleList(APIView):
     authentication_classes = [TokenAuthentication]
@@ -32,8 +33,11 @@ class SampleList(APIView):
         if search:
             samples = samples.filter(Q(name__icontains=search) | Q(description__icontains=search))
         samples = samples.order_by('-id')
-        serializer = SampleSerializer(samples, many=True)
-        return Response(serializer.data)
+        paginator = PageNumberPagination()
+        paginator.page_size = int(request.query_params.get('page_size', 25))
+        page = paginator.paginate_queryset(samples, request)
+        serializer = SampleSerializer(page, many=True)
+        return paginator.get_paginated_response(serializer.data)
 
     def post(self, request):
         serializer = SampleSerializer(data=request.data)

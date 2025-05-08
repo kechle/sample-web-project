@@ -43,7 +43,7 @@ export function renderTagsFilterMultiselect(tags) {
                 selectedFilterTags.push(tag.id);
             }
             renderTagsFilterMultiselect(tags);
-            window.loadSamples();
+            window.loadSamples(1);
         };
         container.appendChild(tagDiv);
     });
@@ -107,16 +107,16 @@ export function loadUploadCategories() {
 export function setupFilters() {
     const categorySelect = document.getElementById('category');
     if (categorySelect) {
-        categorySelect.addEventListener('change', window.loadSamples);
+        categorySelect.addEventListener('change', () => window.loadSamples(1));
     }
 
     const searchBtn = document.getElementById('search-btn');
     if (searchBtn) {
-        searchBtn.onclick = () => window.loadSamples();
+        searchBtn.onclick = () => window.loadSamples(1);
     }
 
     const bpmInput = document.getElementById('bpm-filter');
     if (bpmInput) {
-        bpmInput.addEventListener('input', window.loadSamples);
+        bpmInput.addEventListener('input', () => window.loadSamples(1));
     }
 } 

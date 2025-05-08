@@ -5,6 +5,7 @@ import { showUploadResult, closeModal } from './modals.js';
 let likedSampleIds = [];
 const SAMPLES_PER_PAGE_MAIN = 25;
 let mainSamplesPage = 1;
+let mainSamplesTotalPages = 1;
 
 export async function fetchLikedSamples() {
     if (!localStorage.getItem('token')) return [];
@@ -131,11 +132,11 @@ export async function loadSamples(page = 1) {
     const tags = selectedFilterTags.join(',');
     const search = searchEl ? searchEl.value : '';
     const bpm = bpmEl ? bpmEl.value : '';
-    let url = '/api/samples/?';
-    if (category) url += `category=${category}&`;
-    if (tags) url += `tags=${tags}&`;
-    if (search) url += `search=${encodeURIComponent(search)}&`;
-    if (bpm !== '' && bpm !== undefined) url += `bpm=${bpm}`;
+    let url = `/api/samples/?page=${page}&page_size=${SAMPLES_PER_PAGE_MAIN}`;
+    if (category) url += `&category=${category}`;
+    if (tags) url += `&tags=${tags}`;
+    if (search) url += `&search=${encodeURIComponent(search)}`;
+    if (bpm !== '' && bpm !== undefined) url += `&bpm=${bpm}`;
     
     await fetchLikedSamples();
     const response = await fetch(url, {
@@ -144,24 +145,21 @@ export async function loadSamples(page = 1) {
     const data = await response.json();
     
     mainSamplesPage = page;
-    const totalPages = Math.ceil(data.length / SAMPLES_PER_PAGE_MAIN) || 1;
+    mainSamplesTotalPages = Math.ceil(data.count / SAMPLES_PER_PAGE_MAIN) || 1;
     const currentPage = mainSamplesPage;
-    const start = (currentPage - 1) * SAMPLES_PER_PAGE_MAIN;
-    const end = start + SAMPLES_PER_PAGE_MAIN;
-    const pageSamples = data.slice(start, end);
     container.innerHTML = '';
-    pageSamples.forEach(sample => {
+    (data.results || []).forEach(sample => {
         container.innerHTML += renderSampleCard(sample, true);
     });
     
     // Пагинация
-    if (totalPages > 1) {
+    if (mainSamplesTotalPages > 1) {
         const pagDiv = document.createElement('div');
         pagDiv.className = 'pagination';
         pagDiv.innerHTML = `
             <button class="pag-btn" ${currentPage === 1 ? 'disabled' : ''} id="main-prev-page">&larr; Prev</button>
-            <span class="pag-info">Page ${currentPage} of ${totalPages}</span>
-            <button class="pag-btn" ${currentPage === totalPages ? 'disabled' : ''} id="main-next-page">Next &rarr;</button>
+            <span class="pag-info">Page ${currentPage} of ${mainSamplesTotalPages}</span>
+            <button class="pag-btn" ${currentPage === mainSamplesTotalPages ? 'disabled' : ''} id="main-next-page">Next &rarr;</button>
         `;
         container.appendChild(pagDiv);
         document.getElementById('main-prev-page').onclick = () => loadSamples(currentPage - 1);
