@@ -167,3 +167,14 @@ class LikedSamplesView(APIView):
         liked_samples = [like.sample for like in Like.objects.filter(user=request.user)]
         serializer = SampleSerializer(liked_samples, many=True)
         return Response(serializer.data)
+
+class LogoutView(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        try:
+            request.user.auth_token.delete()
+        except Exception:
+            pass
+        return Response({'success': 'Logged out'})

@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import home, SampleList, SampleDetail, RegisterView, LoginView, CategoryList, TagList, samples_page, LikeSampleView, UnlikeSampleView, UserSamplesView, LikedSamplesView
+from .views import home, SampleList, SampleDetail, RegisterView, LoginView, CategoryList, TagList, samples_page, LikeSampleView, UnlikeSampleView, UserSamplesView, LikedSamplesView, LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -15,6 +15,7 @@ urlpatterns = [
     path('api/my-samples/', UserSamplesView.as_view(), name='user-samples'),
     path('api/register/', RegisterView.as_view(), name='register'),
     path('api/login/', LoginView.as_view(), name='login'),
+    path('api/logout/', LogoutView.as_view(), name='logout'),
     path('api/categories/', CategoryList.as_view(), name='category-list'),
     path('api/tags/', TagList.as_view(), name='tag-list'),
     path('samples/', samples_page, name='samples-page'),
