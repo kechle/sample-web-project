@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Library</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="/" class="logo">Sample Library</a>
+            <div class="nav-links">
+                <a href="/" class="active">Home</a>
+                <a href="#" id="my-sample-link">My Sample</a>
+            </div>
+            <div class="auth-buttons">
+                <span class="user-info" style="display:none;"></span>
+                <button class="login-btn" onclick="showLoginModal()">Sign In</button>
+                <button class="register-btn" onclick="showRegisterModal()">Sign Up</button>
+                <button class="upload-btn" onclick="showUploadModal()" style="display: none;">Upload Sample</button>
+                <button class="logout-btn" onclick="logout()" style="display: none;">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Your Creative Sound Library</h1>
+            <p>Discover and share high-quality audio samples. Perfect for producers, musicians, and sound designers.</p>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search samples...">
+                <button id="search-btn">Search</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="filters">
+        <select id="category">
+            <option value="">All Categories</option>
+        </select>
+        <div id="tags-filter-multiselect" class="custom-multiselect"></div>
+    </div>
+
+    <main class="main-content">
+        <h2>Latest Samples</h2>
+        <div class="samples-grid" id="samples-container">
+            <!-- Samples will be loaded here dynamically -->
+        </div>
+    </main>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('login-modal')">&times;</span>
+            <h2>Sign In</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-username">Username</label>
+                    <input type="text" id="login-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="upload-btn">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('register-modal')">&times;</span>
+            <h2>Create Account</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="register-username">Username</label>
+                    <input type="text" id="register-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" required>
+                </div>
+                <button type="submit" class="upload-btn">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Upload Modal -->
+    <div id="upload-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('upload-modal')">&times;</span>
+            <h2>Upload Sample</h2>
+            <form id="upload-form">
+                <div class="form-group">
+                    <label for="sample-name">Sample Name</label>
+                    <input type="text" id="sample-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="sample-description">Description</label>
+                    <textarea id="sample-description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="sample-category">Category</label>
+                    <select id="sample-category" required>
+                        <option value="">Select category</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sample-bpm">BPM</label>
+                    <input type="number" id="sample-bpm" required>
+                </div>
+                <div class="form-group">
+                    <label for="sample-tags">Tags</label>
+                    <div id="sample-tags" class="custom-multiselect">
+                        <!-- Tags will be loaded dynamically -->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="file-label">
+                        Choose Audio File
+                        <input type="file" id="sample-file" accept="audio/*" required>
+                        <span id="file-chosen">No file chosen</span>
+                    </label>
+                </div>
+                <button type="submit" class="upload-btn">Upload Sample</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="upload-result-modal" class="modal">
+      <div class="modal-content" style="max-width: 340px; text-align: center;">
+        <span class="close" onclick="closeModal('upload-result-modal')">&times;</span>
+        <div id="upload-result-message"></div>
+      </div>
+    </div>
+
+    <div id="my-sample-modal" class="modal">
+      <div class="modal-content" style="max-width: 700px; min-width: 320px;">
+        <span class="close" id="my-sample-close">&times;</span>
+        <div style="display: flex; gap: 24px; margin-bottom: 24px;">
+          <button id="tab-liked" class="tab-btn active">Liked</button>
+          <button id="tab-uploaded" class="tab-btn">Uploaded</button>
+        </div>
+        <div id="my-sample-content"></div>
+      </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

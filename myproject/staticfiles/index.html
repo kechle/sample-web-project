@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Library</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Sample Library</div>
+        <div class="nav-links">
+            <a href="#" class="active">Browse</a>
+            <a href="#" id="upload-link">Upload</a>
+        </div>
+        <div class="auth-buttons">
+            <button id="login-btn">Sign In</button>
+            <button id="register-btn">Sign Up</button>
+            <span id="user-info" style="display:none;"></span>
+            <button id="logout-btn" style="display:none;">Logout</button>
+        </div>
+    </nav>
+    <div class="main-layout">
+        <div class="main-content">
+            <section class="hero">
+                <h1>Discover Amazing Samples</h1>
+                <p>High-quality audio samples for your next project</p>
+                <div class="search-bar">
+                    <input type="text" id="search" placeholder="Search samples...">
+                    <button id="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+            </section>
+            <div class="filters-horizontal">
+                <div class="filter-block">
+                    <label for="category">Category:</label>
+                    <select id="category">
+                        <option value="">All Categories</option>
+                    </select>
+                </div>
+                <div class="filter-block">
+                    <label>Tags:</label>
+                    <div class="custom-multiselect" id="tags-filter-multiselect"></div>
+                </div>
+            </div>
+            <section class="samples-grid" id="samples-grid">
+                <!-- Sample cards will be added here -->
+            </section>
+            <div id="upload-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="close-modal">&times;</span>
+                    <h2>Upload Sample</h2>
+                    <form id="upload-sample-form">
+                        <input type="text" id="name" placeholder="Sample Name" required>
+                        <textarea id="description" placeholder="Description" required></textarea>
+                        <select id="category_id" required>
+                            <option value="">Select category</option>
+                        </select>
+                        <div class="custom-multiselect" id="tags-multiselect"></div>
+                        <label class="file-label">
+                            <input type="file" id="file" accept=".wav,.mp3" required>
+                            <span id="file-chosen">Choose file...</span>
+                        </label>
+                        <button type="submit" class="upload-btn">Upload</button>
+                    </form>
+                </div>
+            </div>
+            <div id="login-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="close-login-modal">&times;</span>
+                    <h2>Sign In</h2>
+                    <form id="login-form">
+                        <input type="text" id="login-username" placeholder="Username" required>
+                        <input type="password" id="login-password" placeholder="Password" required>
+                        <button type="submit" class="upload-btn">Sign In</button>
+                    </form>
+                </div>
+            </div>
+            <div id="register-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="close-register-modal">&times;</span>
+                    <h2>Sign Up</h2>
+                    <form id="register-form">
+                        <input type="text" id="register-username" placeholder="Username" required>
+                        <input type="email" id="register-email" placeholder="Email" required>
+                        <input type="password" id="register-password" placeholder="Password" required>
+                        <button type="submit" class="upload-btn">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+            <div id="upload-result-modal">
+                <div class="modal-content">
+                    <span id="upload-result-message"></span>
+                    <br>
+                    <button class="ok-btn" id="close-upload-result">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>

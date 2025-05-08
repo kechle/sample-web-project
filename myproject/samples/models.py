@@ -14,13 +14,15 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
-    
+
 class Sample(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     file = models.FileField(upload_to='samples/')
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     tags = models.ManyToManyField(Tag)
+    bpm = models.PositiveIntegerField(null=False, blank=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='samples')
 
     def __str__(self):
         return self.name
@@ -32,3 +34,11 @@ class DownloadHistory(models.Model):
 
     def __str__(self):
         return f"download by {self.user.username} for {self.sample.name} on {self.download_time}"
+
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    sample = models.ForeignKey(Sample, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'sample')
