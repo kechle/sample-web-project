@@ -3,7 +3,7 @@ import { showUploadResult, closeModal } from './modals.js';
 
 // --- Работа с сэмплами ---
 let likedSampleIds = [];
-const SAMPLES_PER_PAGE_MAIN = 25;
+const SAMPLES_PER_PAGE_MAIN = 6;
 let mainSamplesPage = 1;
 let mainSamplesTotalPages = 1;
 

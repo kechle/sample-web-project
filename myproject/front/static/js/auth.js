@@ -61,7 +61,8 @@ async function handleLogin(e) {
     e.preventDefault();
     const username = document.getElementById('login-username').value;
     const password = document.getElementById('login-password').value;
-    
+    let errorMsg = document.getElementById('login-error-msg');
+    if (errorMsg) errorMsg.remove();
     try {
         const res = await fetch('/api/login/', {
             method: 'POST',
@@ -77,13 +78,34 @@ async function handleLogin(e) {
             closeModal('login-modal');
             window.loadSamples();
         } else {
-            alert(data.error || 'Login failed');
+            showLoginError(data.error || 'Login failed');
         }
     } catch (error) {
-        console.error('Login error:', error);
-        alert('Login failed. Please try again.');
+        showLoginError('Login failed. Please try again.');
     }
 }
+
+function showLoginError(msg) {
+    let form = document.getElementById('login-form');
+    if (!form) return;
+    let errorMsg = document.createElement('div');
+    errorMsg.id = 'login-error-msg';
+    errorMsg.style.color = '#ff6b6b';
+    errorMsg.style.marginTop = '10px';
+    errorMsg.style.textAlign = 'center';
+    errorMsg.textContent = msg;
+    form.appendChild(errorMsg);
+}
+
+document.getElementById('login-username').addEventListener('input', () => {
+    let errorMsg = document.getElementById('login-error-msg');
+    if (errorMsg) errorMsg.remove();
+});
+
+document.getElementById('login-password').addEventListener('input', () => {
+    let errorMsg = document.getElementById('login-error-msg');
+    if (errorMsg) errorMsg.remove();
+});
 
 async function handleRegister(e) {
     e.preventDefault();
