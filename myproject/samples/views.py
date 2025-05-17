@@ -1,75 +1,48 @@
-from rest_framework.views import APIView
+from django.shortcuts import render
+from rest_framework import generics, status
 from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
-from django.db.models import Q
-from .models import Sample, DownloadHistory, Category, Tag, Like
-from .serializers import SampleSerializer, DownloadHistorySerializer, CategorySerializer, TagSerializer, LikeSerializer
+from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.contrib.auth.models import User
+from django.http import HttpResponse, FileResponse
+from .models import Sample, Category, Tag, DownloadHistory, Like
+from .serializers import (
+    SampleSerializer, CategorySerializer, TagSerializer,
+    DownloadHistorySerializer, LikeSerializer
+)
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
-from django.shortcuts import render
 from rest_framework.pagination import PageNumberPagination
 
-class SampleList(APIView):
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticatedOrReadOnly]
+class SampleList(generics.ListCreateAPIView):
+    queryset = Sample.objects.all()
+    serializer_class = SampleSerializer
+    permission_classes = [AllowAny]
 
-    def get(self, request):
-        category = request.query_params.get('category', None)
-        tags = request.query_params.get('tags', None)
-        search = request.query_params.get('search', None)
-        bpm = request.query_params.get('bpm', None)
-        samples = Sample.objects.all()
-        if category:
-            samples = samples.filter(category__id=category)
-        if tags:
-            tag_list = tags.split(',')
-            for tag_id in tag_list:
-                samples = samples.filter(tags__id=tag_id)
-        if bpm:
-            samples = samples.filter(bpm=bpm)
-        if search:
-            samples = samples.filter(Q(name__icontains=search) | Q(description__icontains=search))
-        samples = samples.order_by('-id')
-        paginator = PageNumberPagination()
-        paginator.page_size = int(request.query_params.get('page_size', 25))
-        page = paginator.paginate_queryset(samples, request)
-        serializer = SampleSerializer(page, many=True)
-        return paginator.get_paginated_response(serializer.data)
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
-    def post(self, request):
-        serializer = SampleSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save(user=request.user)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class SampleDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Sample.objects.all()
+    serializer_class = SampleSerializer
+    permission_classes = [AllowAny]
 
-class SampleDetail(APIView):
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticatedOrReadOnly]
+class SampleDownloadView(APIView):
+    permission_classes = [AllowAny]
 
     def get(self, request, pk):
         try:
             sample = Sample.objects.get(pk=pk)
+            if not sample.file:
+                return Response(status=status.HTTP_404_NOT_FOUND)
+            response = FileResponse(sample.file.open('rb'), as_attachment=True, filename=sample.file.name)
+            # Записываем историю загрузок
+            if request.user.is_authenticated:
+                DownloadHistory.objects.create(user=request.user, sample=sample)
+            return response
         except Sample.DoesNotExist:
-            return Response({'error': 'Sample not found'}, status=status.HTTP_404_NOT_FOUND)
-        
-        serializer = SampleSerializer(sample)
-        return Response(serializer.data)
-
-    def post(self, request, pk):
-        try:
-            sample = Sample.objects.get(pk=pk)
-        except Sample.DoesNotExist:
-            return Response({'error': 'Sample not found'}, status=status.HTTP_404_NOT_FOUND)
-        
-        # Записываем информацию о скачивании
-        download_history = DownloadHistory(user=request.user, sample=sample)
-        download_history.save()
-        
-        return Response({'message': 'Download recorded'}, status=status.HTTP_201_CREATED)
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
 class RegisterView(APIView):
     def post(self, request):

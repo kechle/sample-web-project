@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from .models import Category, Tag, Sample, DownloadHistory, Like
+import base64
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -8,7 +9,7 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'description']
 
 class TagSerializer(serializers.ModelSerializer):
-    class Meta: 
+    class Meta:
         model = Tag
         fields = ['id', 'name']
 
@@ -27,12 +28,11 @@ class SampleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Sample
-        fields = ['id', 'name', 'description', 'file_url', 'file', 'category', 'category_id', 'tags', 'tag_ids', 'bpm']
+        fields = ['id', 'name', 'description', 'file_url', 'file', 'category', 'category_id', 'tags', 'tag_ids', 'bpm', 'created_at']
+
     def get_file_url(self, obj):
-        if obj.file:
-            return obj.file.url
-        return None
-    
+        return obj.get_file_url()
+
 class DownloadHistorySerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField()
     sample = SampleSerializer(read_only=True)

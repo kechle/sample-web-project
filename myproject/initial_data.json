@@ -1,0 +1,946 @@
+[
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$4lp69PwrxTB2vyrNHWIEHD$ZKuhlESXRxLBFmfjv3Ul5MlmM1+ye/U4nZEqvQWvH+s=",
+    "last_login": "2025-05-08T15:05:22.675Z",
+    "is_superuser": true,
+    "username": "roor",
+    "first_name": "",
+    "last_name": "",
+    "email": "root@gmail.ru",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-05-08T15:02:30.506Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$Z0YoHeSFcRSW3LD3IitZzG$hjs3CbOHj7eOSg7bHbC2geuNq1xCngsM72cTJ/LYoA8=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Dsha",
+    "first_name": "",
+    "last_name": "",
+    "email": "Dsha@gmail.ru",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-05-08T15:03:23.362Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "9m2sa9981ux96tut724fewxgpwpiua9m",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hBmKLS4dN8zEJgBqRqalHZlvLtt0oVu_3vvv4UP21r81tLiJxZXAeLyu8VAz1QPwI9Q77Okua7LFOWhyJM2Oc6cXrfT_TsooZW9Dpgc5UAEORpEHTtrFFsHTmkE27Nj4AhpB6iM1siExkI_ZNKA3SA-X-QTNyk:1uD2oM:4gouRRLgdTTel7hw1OaLKcwLBGDHoL1tWkY-jPETjXk",
+    "expire_date": "2025-05-22T15:05:22.677Z"
+  }
+},
+{
+  "model": "authtoken.token",
+  "pk": "e0f042bbeaee5d0aa30ca5127e5bdc990351d13e",
+  "fields": {
+    "user": [
+      "roor"
+    ],
+    "created": "2025-05-08T15:21:52.780Z"
+  }
+},
+{
+  "model": "samples.category",
+  "pk": 7,
+  "fields": {
+    "name": "Music",
+    "description": "Music"
+  }
+},
+{
+  "model": "samples.category",
+  "pk": 8,
+  "fields": {
+    "name": "Sound Effects",
+    "description": "Sound Effects"
+  }
+},
+{
+  "model": "samples.category",
+  "pk": 9,
+  "fields": {
+    "name": "Speech",
+    "description": "Speech"
+  }
+},
+{
+  "model": "samples.category",
+  "pk": 10,
+  "fields": {
+    "name": "Nature",
+    "description": "Nature"
+  }
+},
+{
+  "model": "samples.category",
+  "pk": 11,
+  "fields": {
+    "name": "Transportation",
+    "description": "Transportation"
+  }
+},
+{
+  "model": "samples.tag",
+  "pk": 1,
+  "fields": {
+    "name": "ambient"
+  }
+},
+{
+  "model": "samples.tag",
+  "pk": 2,
+  "fields": {
+    "name": "short"
+  }
+},
+{
+  "model": "samples.tag",
+  "pk": 3,
+  "fields": {
+    "name": "long"
+  }
+},
+{
+  "model": "samples.tag",
+  "pk": 4,
+  "fields": {
+    "name": "loop"
+  }
+},
+{
+  "model": "samples.tag",
+  "pk": 5,
+  "fields": {
+    "name": "vocal"
+  }
+},
+{
+  "model": "samples.tag",
+  "pk": 6,
+  "fields": {
+    "name": "instrumental"
+  }
+},
+{
+  "model": "samples.tag",
+  "pk": 7,
+  "fields": {
+    "name": "urban"
+  }
+},
+{
+  "model": "samples.tag",
+  "pk": 8,
+  "fields": {
+    "name": "forest"
+  }
+},
+{
+  "model": "samples.tag",
+  "pk": 9,
+  "fields": {
+    "name": "water"
+  }
+},
+{
+  "model": "samples.tag",
+  "pk": 10,
+  "fields": {
+    "name": "mechanical"
+  }
+},
+{
+  "model": "samples.tag",
+  "pk": 11,
+  "fields": {
+    "name": "electronic"
+  }
+},
+{
+  "model": "samples.tag",
+  "pk": 12,
+  "fields": {
+    "name": "acoustic"
+  }
+},
+{
+  "model": "samples.tag",
+  "pk": 13,
+  "fields": {
+    "name": "background"
+  }
+},
+{
+  "model": "samples.tag",
+  "pk": 14,
+  "fields": {
+    "name": "dramatic"
+  }
+},
+{
+  "model": "samples.tag",
+  "pk": 15,
+  "fields": {
+    "name": "relaxing"
+  }
+},
+{
+  "model": "samples.tag",
+  "pk": 16,
+  "fields": {
+    "name": "animal"
+  }
+},
+{
+  "model": "samples.tag",
+  "pk": 17,
+  "fields": {
+    "name": "wind"
+  }
+},
+{
+  "model": "samples.tag",
+  "pk": 18,
+  "fields": {
+    "name": "rain"
+  }
+},
+{
+  "model": "samples.tag",
+  "pk": 19,
+  "fields": {
+    "name": "industrial"
+  }
+},
+{
+  "model": "samples.tag",
+  "pk": 20,
+  "fields": {
+    "name": "children"
+  }
+},
+{
+  "model": "samples.sample",
+  "pk": 1,
+  "fields": {
+    "name": "sample 1",
+    "description": "saple test 1",
+    "file": "samples/looperman-l-4880299-0396797-downsampled-sustain-pad3_xzyOzVw.wav",
+    "category": 7,
+    "bpm": 120,
+    "user": [
+      "Dsha"
+    ],
+    "tags": [
+      1
+    ]
+  }
+},
+{
+  "model": "samples.sample",
+  "pk": 2,
+  "fields": {
+    "name": "sample 2",
+    "description": "saple test 2",
+    "file": "samples/looperman-l-4880299-0396797-downsampled-sustain-pad2.wav",
+    "category": 7,
+    "bpm": 120,
+    "user": [
+      "Dsha"
+    ],
+    "tags": [
+      1,
+      3
+    ]
+  }
+},
+{
+  "model": "samples.like",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "roor"
+    ],
+    "sample": 2,
+    "created_at": "2025-05-08T15:21:54.917Z"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2025-05-08T15:06:43.901Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "category"
+    ],
+    "object_id": "1",
+    "object_repr": "╠єч√ър",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2025-05-08T15:06:55.340Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "category"
+    ],
+    "object_id": "2",
+    "object_repr": "╟тєъют√х ¤ЇЇхъЄ√",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2025-05-08T15:06:59.882Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "category"
+    ],
+    "object_id": "3",
+    "object_repr": "╨хў№",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2025-05-08T15:07:04.529Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "category"
+    ],
+    "object_id": "4",
+    "object_repr": "╧ЁшЁюфр",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2025-05-08T15:07:10.182Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "category"
+    ],
+    "object_id": "5",
+    "object_repr": "╥ЁрэёяюЁЄ",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2025-05-08T15:07:19.692Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "category"
+    ],
+    "object_id": "6",
+    "object_repr": "ambient",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2025-05-08T15:08:12.311Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "category"
+    ],
+    "object_id": "6",
+    "object_repr": "ambient",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2025-05-08T15:08:12.311Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "category"
+    ],
+    "object_id": "5",
+    "object_repr": "╥ЁрэёяюЁЄ",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2025-05-08T15:08:12.311Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "category"
+    ],
+    "object_id": "4",
+    "object_repr": "╧ЁшЁюфр",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2025-05-08T15:08:12.311Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "category"
+    ],
+    "object_id": "3",
+    "object_repr": "╨хў№",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2025-05-08T15:08:12.311Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "category"
+    ],
+    "object_id": "2",
+    "object_repr": "╟тєъют√х ¤ЇЇхъЄ√",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2025-05-08T15:08:12.311Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "category"
+    ],
+    "object_id": "1",
+    "object_repr": "╠єч√ър",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2025-05-08T15:08:39.616Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "category"
+    ],
+    "object_id": "7",
+    "object_repr": "Music",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2025-05-08T15:08:46.402Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "category"
+    ],
+    "object_id": "8",
+    "object_repr": "Sound Effects",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2025-05-08T15:08:50.513Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "category"
+    ],
+    "object_id": "9",
+    "object_repr": "Speech",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2025-05-08T15:08:54.311Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "category"
+    ],
+    "object_id": "10",
+    "object_repr": "Nature",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2025-05-08T15:08:59.543Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "category"
+    ],
+    "object_id": "11",
+    "object_repr": "Transportation",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2025-05-08T15:09:09.275Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "tag"
+    ],
+    "object_id": "1",
+    "object_repr": "ambient",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2025-05-08T15:09:12.927Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "tag"
+    ],
+    "object_id": "2",
+    "object_repr": "short",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2025-05-08T15:09:16.764Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "tag"
+    ],
+    "object_id": "3",
+    "object_repr": "long",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2025-05-08T15:09:20.059Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "tag"
+    ],
+    "object_id": "4",
+    "object_repr": "loop",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2025-05-08T15:09:23.411Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "tag"
+    ],
+    "object_id": "5",
+    "object_repr": "vocal",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2025-05-08T15:09:26.605Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "tag"
+    ],
+    "object_id": "6",
+    "object_repr": "instrumental",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2025-05-08T15:09:29.771Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "tag"
+    ],
+    "object_id": "7",
+    "object_repr": "urban",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2025-05-08T15:09:33.292Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "tag"
+    ],
+    "object_id": "8",
+    "object_repr": "forest",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2025-05-08T15:09:36.906Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "tag"
+    ],
+    "object_id": "9",
+    "object_repr": "water",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2025-05-08T15:09:41.201Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "tag"
+    ],
+    "object_id": "10",
+    "object_repr": "mechanical",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2025-05-08T15:10:41.356Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "tag"
+    ],
+    "object_id": "11",
+    "object_repr": "electronic",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2025-05-08T15:10:44.505Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "tag"
+    ],
+    "object_id": "12",
+    "object_repr": "acoustic",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 30,
+  "fields": {
+    "action_time": "2025-05-08T15:10:47.684Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "tag"
+    ],
+    "object_id": "13",
+    "object_repr": "background",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 31,
+  "fields": {
+    "action_time": "2025-05-08T15:10:51.287Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "tag"
+    ],
+    "object_id": "14",
+    "object_repr": "dramatic",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 32,
+  "fields": {
+    "action_time": "2025-05-08T15:10:54.250Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "tag"
+    ],
+    "object_id": "15",
+    "object_repr": "relaxing",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 33,
+  "fields": {
+    "action_time": "2025-05-08T15:10:57.705Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "tag"
+    ],
+    "object_id": "16",
+    "object_repr": "animal",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 34,
+  "fields": {
+    "action_time": "2025-05-08T15:11:00.929Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "tag"
+    ],
+    "object_id": "17",
+    "object_repr": "wind",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 35,
+  "fields": {
+    "action_time": "2025-05-08T15:11:04.362Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "tag"
+    ],
+    "object_id": "18",
+    "object_repr": "rain",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 36,
+  "fields": {
+    "action_time": "2025-05-08T15:11:07.566Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "tag"
+    ],
+    "object_id": "19",
+    "object_repr": "industrial",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 37,
+  "fields": {
+    "action_time": "2025-05-08T15:11:11.509Z",
+    "user": [
+      "roor"
+    ],
+    "content_type": [
+      "samples",
+      "tag"
+    ],
+    "object_id": "20",
+    "object_repr": "children",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+}
+]

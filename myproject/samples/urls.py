@@ -2,13 +2,14 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import home, SampleList, SampleDetail, RegisterView, LoginView, CategoryList, TagList, samples_page, LikeSampleView, UnlikeSampleView, UserSamplesView, LikedSamplesView, LogoutView
+from .views import home, SampleList, SampleDetail, RegisterView, LoginView, CategoryList, TagList, samples_page, LikeSampleView, UnlikeSampleView, UserSamplesView, LikedSamplesView, LogoutView, SampleDownloadView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('api/samples/', SampleList.as_view(), name='sample-list'),
     path('api/samples/<int:pk>/', SampleDetail.as_view(), name='sample-detail'),
+    path('api/samples/<int:pk>/download/', SampleDownloadView.as_view(), name='sample-download'),
     path('api/samples/<int:pk>/like/', LikeSampleView.as_view(), name='sample-like'),
     path('api/samples/<int:pk>/unlike/', UnlikeSampleView.as_view(), name='sample-unlike'),
     path('api/samples/liked/', LikedSamplesView.as_view(), name='liked-samples'),
